@@ -1,0 +1,19 @@
+# Compiler files #
+##################
+/target
+/classes
+/checkouts
+pom.xml
+pom.xml.asc
+*.jar
+*.class
+/.lein-*
+/.nrepl-port
+
+# IDE files #
+#############
+.idea/
+*.iml
+.project
+.classpath
+.settings/
