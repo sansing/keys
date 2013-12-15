@@ -19,13 +19,17 @@
 
 (defn subject-info
   "Gets the info part of the current subject from the context, or returns nil"
-  []
-  (get *current-subject* :info nil))
+  ([]
+   (subject-info *current-subject*))
+  ([subject]
+   (get subject :info nil)))
 
 (defn subject-keys
   "Gets the keys of the current subject from the context"
-  []
-  (get *current-subject* :keys nil))
+  ([]
+   (subject-keys *current-subject*))
+  ([subject]
+   (get subject :keys nil)))
 
 (defn valid-subject-map
   "Checks if the provided subject map is valid. Subject maps need to fulfill the following shape:
