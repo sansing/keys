@@ -5,20 +5,17 @@
 
 (defn is-allowed? [subject k]
   (let [subjectks (subject-keys subject)]
-    (if (nil? k)
-      true
-      (contains-key? k subjectks))))
+    (or (nil? k)
+        (contains-key? k subjectks))))
 
 (defmacro secured [k & body]
   `(let [k# ~k
          sbj# (keys.subject/subject)]
-     (when (nil? sbj#)
-       (throw+ {:type :no-subject}))
-     (when (not (keys.key/valid-key? k#))
-       (throw+ {:type :invalid-key :key k#}))
-     (when (not (keys.core/is-allowed? sbj# k#))
-       (throw+ {:type :unauthorized :required k# :subject sbj#}))
-      ~@body))
+     (cond
+       (nil? sbj#) (throw+ {:type :no-subject})
+       (not (keys.key/valid-key? k#)) (throw+ {:type :invalid-key :key k#})
+       (not (keys.core/is-allowed? sbj# k#)) (throw+ {:type :unauthorized :required k# :subject sbj#})
+       :else ~@body)))
 
 
 (comment
