@@ -13,8 +13,16 @@
 
 (deftest contains-key-tests
   (facts "Testing contains-key"
-    (contains-key [:obj :read] [[:obj :read] [:obj :write]])   => true
-    (contains-key [:obj :update] [[:obj :read] [:obj :write]]) => false
-    (contains-key nil nil)                                     => false
-    (contains-key nil [[:obj :read]])                          => false
-    (contains-key [:obj :read] nil)                            => false))
+    (contains-key? [:obj :read] [[:obj :read] [:obj :write]])   => true
+    (contains-key? [:obj :update] [[:obj :read] [:obj :write]]) => false
+    (contains-key? nil nil)                                     => false
+    (contains-key? nil [[:obj :read]])                          => false
+    (contains-key? [:obj :read] nil)                            => false))
+
+(deftest valid-key-tests
+  (facts "Testing valid-key?"
+   (valid-key? [:obj]) => true
+   (valid-key? [:obj :read]) => true
+   (valid-key? []) => false
+   (valid-key? nil) => false
+   (valid-key? {:obj :read}) => false))
