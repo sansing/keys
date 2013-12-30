@@ -10,11 +10,11 @@
 
 (defmacro secured [k & body]
   `(let [k# ~k
-         sbj# (keys.subject/subject)]
+         sbj# (subject)]
      (cond
        (nil? sbj#) (throw+ {:type :no-subject})
-       (not (keys.key/valid-key? k#)) (throw+ {:type :invalid-key :key k#})
-       (not (keys.core/is-allowed? sbj# k#)) (throw+ {:type :unauthorized :required k# :subject sbj#})
+       (not (valid-key? k#)) (throw+ {:type :invalid-key :key k#})
+       (not (is-allowed? sbj# k#)) (throw+ {:type :unauthorized :required k# :subject sbj#})
        :else ~@body)))
 
 

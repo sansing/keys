@@ -47,7 +47,7 @@
    {:type :invalid-subject :subject <provided-subject>}"
   [subject & body]
   `(let [sbj# ~subject]
-    (if (keys.subject/valid-subject-map sbj#)
-      (binding [keys.subject/*current-subject* sbj#]
+    (if (valid-subject-map sbj#)
+      (binding [*current-subject* sbj#]
         ~@body)
       (throw+ {:type :invalid-subject :subject sbj#}))))
