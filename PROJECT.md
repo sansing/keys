@@ -36,3 +36,8 @@ Milestone 1 will be released as version `0.1.0`, and will support the following 
  * Switching subject context
  * Securing expressions
 
+### Milestone 2
+Milestone 2 will be released as version `0.2.0`, and will include the following features:
+
+ * Subject management
+ * Authentication (which will deal with subject context switching)
